@@ -56,6 +56,10 @@ export default function AdminLoginPage() {
   const onSubmit = async (data: SignInData) => {
     setIsSubmitting(true);
     try {
+      if (!auth) {
+        throw new Error("Firebase is not configured");
+      }
+      
       // Sign in with existing account
       const userCredential = await signInWithEmailAndPassword(
         auth,
