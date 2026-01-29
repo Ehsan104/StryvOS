@@ -61,8 +61,9 @@ export default function AdminLoginPage() {
       }
       
       // Sign in with existing account
+      // TypeScript: auth is guaranteed to be non-null here due to the check above
       const userCredential = await signInWithEmailAndPassword(
-        auth,
+        auth as NonNullable<typeof auth>,
         data.email,
         data.password
       );
