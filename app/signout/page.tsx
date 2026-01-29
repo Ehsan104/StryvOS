@@ -13,6 +13,14 @@ export default function SignOutPage() {
     async function handleSignOut() {
       try {
         // Sign out from Firebase
+        if (!auth) {
+          // If Firebase is not configured, just clear the session cookie
+          await fetch("/api/auth/logout", {
+            method: "POST",
+          });
+          router.push("/");
+          return;
+        }
         await firebaseSignOut(auth);
 
         // Clear session cookie
