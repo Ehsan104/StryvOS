@@ -112,13 +112,11 @@ export default function HomePage() {
                   Get Early Access
                 </CTAButton>
                 <CTAButton
-                  variant="outline"
+                  variant="primary"
                   size="lg"
-                  onClick={() => {
-                    document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
-                  }}
+                  asChild
                 >
-                  See How It Works
+                  <a href="#features">See How It Works</a>
                 </CTAButton>
               </motion.div>
               <motion.p
@@ -127,6 +125,20 @@ export default function HomePage() {
               >
                 Built for CrossFit, MMA, Martial Arts, Yoga, and community gyms
               </motion.p>
+              <motion.div
+                variants={fadeInUp}
+                className="pt-2"
+              >
+                <p className="text-sm text-muted-foreground">
+                  Already have an account?{" "}
+                  <a
+                    href="/signin"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Sign in here
+                  </a>
+                </p>
+              </motion.div>
             </motion.div>
 
             <motion.div
@@ -367,6 +379,17 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <ContactForm />
+                <div className="mt-6 pt-6 border-t text-center">
+                  <p className="text-sm text-muted-foreground">
+                    Already have an account?{" "}
+                    <a
+                      href="/signin"
+                      className="text-primary hover:underline font-medium"
+                    >
+                      Sign in here
+                    </a>
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>

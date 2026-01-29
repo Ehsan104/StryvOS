@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-  display: "swap",
-});
+// Temporarily using system fonts to avoid Turbopack font loading issues
+// TODO: Re-enable Google Fonts when Turbopack font issue is resolved
+const fontVariables = {
+  inter: "--font-inter",
+  sora: "--font-sora",
+};
 
 export const metadata: Metadata = {
   title: "Stryvos — Gym Management for Small Gyms (Check-ins, Classes, Payments)",
@@ -92,7 +86,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${sora.variable} font-sans antialiased`}
+        className="font-sans antialiased"
+        style={{
+          fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        }}
       >
         {children}
         <Toaster />

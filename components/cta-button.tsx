@@ -22,7 +22,7 @@ export function CTAButton({
   const variantMap = {
     primary: "bg-primary text-primary-foreground hover:bg-primary/90",
     secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-    outline: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
+    outline: "border-2 border-primary text-foreground hover:bg-primary hover:text-primary-foreground [&_a]:text-foreground [&_a:hover]:text-primary-foreground",
   };
 
   return (

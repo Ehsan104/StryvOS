@@ -38,6 +38,14 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="text-sm font-medium"
+          >
+            <Link href="/signin">Sign In</Link>
+          </Button>
           <CTAButton
             variant="primary"
             size="default"
@@ -70,6 +78,13 @@ export function Header() {
                   {link.label}
                 </Link>
               ))}
+              <Link
+                href="/signin"
+                onClick={() => setOpen(false)}
+                className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Sign In
+              </Link>
               <CTAButton
                 variant="primary"
                 size="default"

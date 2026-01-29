@@ -61,6 +61,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
+    // Check for Resend API key
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is not set in environment variables");
+      return NextResponse.json(
+        { error: "Email service is not configured. Please contact support." },
+        { status: 500 }
+      );
+    }
+
     // Send email via Resend
     const resend = new Resend(process.env.RESEND_API_KEY);
     const contactTo = process.env.CONTACT_TO || "info@stryvos.org";

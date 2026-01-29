@@ -1,6 +1,11 @@
 import Link from "next/link";
 
 const footerLinks = {
+  product: [
+    { href: "/signin", label: "Sign In" },
+    { href: "#features", label: "Features" },
+    { href: "#contact", label: "Get Early Access" },
+  ],
   legal: [
     { href: "/privacy", label: "Privacy" },
     { href: "/terms", label: "Terms" },
@@ -14,12 +19,28 @@ export function Footer() {
   return (
     <footer className="border-t border-border/50 bg-card">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-4">
           <div>
             <h3 className="text-xl font-heading font-bold mb-4">Stryvos</h3>
             <p className="text-sm text-muted-foreground">
               Every small gym can run like a big gym—without enterprise pricing or bloat.
             </p>
+          </div>
+
+          <div>
+            <h4 className="text-sm font-semibold mb-4">Product</h4>
+            <ul className="space-y-2">
+              {footerLinks.product.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div>

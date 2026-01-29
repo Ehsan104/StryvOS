@@ -1,10 +1,10 @@
-# Stryvos Marketing Site
+# Stryvos
 
-Production-grade marketing site for Stryvos, a gym management software for sub-200 member gyms.
+Gym management software for sub-200 member gyms. Built with Next.js, Firebase, and Stripe.
 
 ## Tech Stack
 
-- **Framework**: Next.js 14+ (App Router) with TypeScript
+- **Framework**: Next.js 16 (App Router) with TypeScript
 - **Styling**: Tailwind CSS v4 with CSS variables
 - **UI Components**: shadcn/ui
 - **Icons**: lucide-react
@@ -13,6 +13,9 @@ Production-grade marketing site for Stryvos, a gym management software for sub-2
 - **Email**: Resend API
 - **Validation**: Zod
 - **Forms**: react-hook-form
+- **Authentication**: Firebase Auth
+- **Database**: Firestore
+- **Payments**: Stripe (Milestone 2)
 
 ## Getting Started
 
@@ -40,15 +43,36 @@ yarn install
 
 3. Set up environment variables:
 ```bash
-cp .env.example .env.local
+# Create .env.local file (see FIREBASE_SETUP_GUIDE.md for detailed instructions)
 ```
 
 Edit `.env.local` and add your values:
 ```env
+# Email Service
 RESEND_API_KEY=re_xxxxxxxxxxxxx
 CONTACT_TO=info@stryvos.org
-NEXT_PUBLIC_BASE_URL=https://stryvos.com
+NEXT_PUBLIC_BASE_URL=https://stryvos.org
+
+# Firebase Client SDK (get from Firebase Console → Project Settings → Your apps → Web app)
+NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=123456789012
+NEXT_PUBLIC_FIREBASE_APP_ID=1:123456789012:web:abcdef1234567890
+
+# Firebase Admin SDK (get from Firebase Console → Project Settings → Service accounts → Generate new private key)
+FIREBASE_ADMIN_PROJECT_ID=your-project-id
+FIREBASE_ADMIN_CLIENT_EMAIL=firebase-adminsdk-xxxxx@your-project.iam.gserviceaccount.com
+FIREBASE_ADMIN_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY_HERE\n-----END PRIVATE KEY-----\n"
+
+# Stripe (for Milestone 2 - optional for now)
+# STRIPE_SECRET_KEY=sk_test_xxxxxxxxxxxxx
+# NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_xxxxxxxxxxxxx
+# STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxx
 ```
+
+**📖 See [FIREBASE_SETUP_GUIDE.md](./FIREBASE_SETUP_GUIDE.md) for detailed Firebase setup instructions.**
 
 ### Development
 
@@ -77,10 +101,22 @@ npm start
 
 - `RESEND_API_KEY`: Your Resend API key (get from [resend.com/api-keys](https://resend.com/api-keys))
 - `CONTACT_TO`: Email address where contact form submissions are sent (default: `info@stryvos.org`)
+- `NEXT_PUBLIC_FIREBASE_API_KEY`: Firebase API key
+- `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`: Firebase Auth domain
+- `NEXT_PUBLIC_FIREBASE_PROJECT_ID`: Firebase project ID
+- `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`: Firebase storage bucket
+- `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`: Firebase messaging sender ID
+- `NEXT_PUBLIC_FIREBASE_APP_ID`: Firebase app ID
+- `FIREBASE_ADMIN_PROJECT_ID`: Firebase Admin project ID
+- `FIREBASE_ADMIN_CLIENT_EMAIL`: Firebase Admin client email
+- `FIREBASE_ADMIN_PRIVATE_KEY`: Firebase Admin private key
 
 ### Optional
 
-- `NEXT_PUBLIC_BASE_URL`: Base URL for the site (used in sitemap and metadata, default: `https://stryvos.com`)
+- `NEXT_PUBLIC_BASE_URL`: Base URL for the site (used in sitemap and metadata, default: `https://stryvos.org`)
+- `STRIPE_SECRET_KEY`: Stripe secret key (for Milestone 2)
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`: Stripe publishable key (for Milestone 2)
+- `STRIPE_WEBHOOK_SECRET`: Stripe webhook secret (for Milestone 2)
 
 ## Email Configuration
 
@@ -174,6 +210,7 @@ stryvos/
 
 ## Features
 
+### Marketing Site
 - ✅ Responsive design (mobile-first)
 - ✅ Dark theme with brand colors
 - ✅ Smooth animations (respects `prefers-reduced-motion`)
@@ -181,9 +218,23 @@ stryvos/
 - ✅ SEO optimized (meta tags, OG images, JSON-LD schema)
 - ✅ Accessibility (WCAG AA compliant)
 - ✅ Performance optimized (targets Lighthouse ≥95)
-- ✅ Type-safe with TypeScript
-- ✅ Form validation with Zod
-- ✅ Email notifications via Resend
+
+### Web App (Milestone 1)
+- ✅ Firebase Authentication (email/password)
+- ✅ Multi-tenant gym management
+- ✅ Role-Based Access Control (RBAC)
+- ✅ Owner onboarding flow
+- ✅ Protected routes with middleware
+- ✅ App shell with sidebar navigation
+- ✅ Firestore security rules
+- ✅ Session management with cookies
+
+### Coming in Milestone 2
+- 🔜 Member management (CRUD)
+- 🔜 Membership plans (CRUD)
+- 🔜 Stripe subscription integration
+- 🔜 QR code generation for members
+- 🔜 Member portal
 
 ## Brand Colors
 

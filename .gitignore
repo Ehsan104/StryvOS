@@ -35,3 +35,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Temporary documentation files (not needed in repo)
+ADMIN_QUICK_START.md
+ADMIN_SDK_ALTERNATIVES.md
+FIREBASE_PERSONAL_SETUP.md
+DEPLOYMENT_SUMMARY.md
+ROUTING_FLOW.md
+
+# Sensitive files
+*.pem
+*.key
+*-key.json
+service-account*.json
