@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
-    // Ensure middleware runs in Edge runtime properly
+    // Proxy runs in Edge runtime
   },
   // Exclude problematic dependencies from Edge runtime
   serverExternalPackages: ['firebase-admin'],

@@ -5,7 +5,7 @@ import type { NextRequest } from "next/server";
 const protectedRoutes = ["/app"];
 const publicRoutes = ["/", "/signin", "/signout", "/privacy", "/terms"];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Handle /admin routes (protected, admin only)
@@ -29,7 +29,7 @@ export async function middleware(request: NextRequest) {
 
     // Session exists, allow access
     // Actual admin verification happens in the page/API route (server-side)
-    // This is because middleware runs in Edge runtime and can't use Firebase Admin SDK
+    // This is because proxy runs in Edge runtime and can't use Firebase Admin SDK
     return NextResponse.next();
   }
 
@@ -47,7 +47,7 @@ export async function middleware(request: NextRequest) {
 
     // Session exists, allow access
     // Actual token verification happens in the page/API route (server-side)
-    // This is because middleware runs in Edge runtime and can't use Firebase Admin SDK
+    // This is because proxy runs in Edge runtime and can't use Firebase Admin SDK
     return NextResponse.next();
   }
 
@@ -67,4 +67,3 @@ export const config = {
     "/signout",
   ],
 };
-
