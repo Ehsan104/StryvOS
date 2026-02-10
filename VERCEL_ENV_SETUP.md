@@ -15,7 +15,9 @@ NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
 NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
 ```
 
-### Firebase Admin SDK (Required for admin features)
+### Firebase Admin SDK (Required for sign-in and admin features)
+
+**⚠️ CRITICAL:** These are required for sign-in to work! Without these, you'll get "Failed to create session" error.
 
 ```
 FIREBASE_ADMIN_PROJECT_ID=your-project-id
@@ -23,7 +25,10 @@ FIREBASE_ADMIN_CLIENT_EMAIL=your-service-account@your-project.iam.gserviceaccoun
 FIREBASE_ADMIN_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
 ```
 
-**Important:** For `FIREBASE_ADMIN_PRIVATE_KEY`, include the entire key including the `-----BEGIN PRIVATE KEY-----` and `-----END PRIVATE KEY-----` lines, with `\n` for newlines.
+**Important:** 
+- For `FIREBASE_ADMIN_PRIVATE_KEY`, include the entire key including the `-----BEGIN PRIVATE KEY-----` and `-----END PRIVATE KEY-----` lines, with `\n` for newlines.
+- Copy the private key EXACTLY as it appears in your service account JSON file
+- Make sure there are no extra spaces or quotes around the value
 
 ### Other Variables (Optional but recommended)
 

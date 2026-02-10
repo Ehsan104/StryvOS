@@ -66,10 +66,33 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Session creation error:", error);
     
-    if (error instanceof Error && error.message.includes("token")) {
+    if (error instanceof Error) {
+      // Check for Admin SDK configuration error
+      if (error.message.includes("Firebase Admin SDK is not configured")) {
+        return NextResponse.json(
+          { 
+            error: "Server configuration error: Firebase Admin SDK is not set up. Please add Admin SDK credentials to Vercel environment variables.",
+            details: "Missing FIREBASE_ADMIN_PROJECT_ID, FIREBASE_ADMIN_CLIENT_EMAIL, or FIREBASE_ADMIN_PRIVATE_KEY"
+          },
+          { status: 500 }
+        );
+      }
+      
+      // Check for token errors
+      if (error.message.includes("token") || error.message.includes("Token")) {
+        return NextResponse.json(
+          { error: "Invalid or expired token" },
+          { status: 401 }
+        );
+      }
+      
+      // Return the actual error message for debugging
       return NextResponse.json(
-        { error: "Invalid or expired token" },
-        { status: 401 }
+        { 
+          error: "Failed to create session",
+          details: error.message
+        },
+        { status: 500 }
       );
     }
 
